@@ -27,6 +27,7 @@ export class UserService {
             _id: user._id,
                 name: user.name,
                 email: user.email,
+                phoneNo: user.phoneNo,
                 token: generateToken(user.email),
               }
             }
@@ -55,7 +56,8 @@ console.log("hash", hash)
     });
     const result = await newUser.save();
     console.log(result);
-    return {id : result.id as string,token: generateToken(result.email)} ;
+    // return {id : result.id as string,token: generateToken(result.email)} ;
+    return result;
   }
 
 }

@@ -33,7 +33,7 @@ import {
         userPhoneNo,
         userPassword,
       );
-      return { id: generatedId };
+      return { userData: generatedId };
     }
     //  Auth user & get token
     //@route  POST /user/login

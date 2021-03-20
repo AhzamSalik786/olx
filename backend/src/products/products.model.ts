@@ -3,6 +3,11 @@ import { Document } from 'mongoose';
 
 
 export const ProductSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: 'User',
+      },
     name: { type: String, required: true },
     type: { type: String, required: true },
     info: { type: String, required: true},
@@ -10,8 +15,16 @@ export const ProductSchema = new mongoose.Schema({
     price: { type: Number, required: true },
     runingKilometers: { type: Number, required: true },
     date: { type: String, required: true },
-    addressLocation : {type: String,  requied: true},
-    currentLocation: { type : String, required: true},
+    addressLocation: {
+        address: { type: String },
+        city: { type: String },
+        country: { type: String },
+        postalCode: { type: String },
+      },
+      currentLocation: {
+        latitude: { type: Number, required: true },
+        longitude: { type: Number, required: true },
+      },
     images : {
         image0 : {type: String, required: true},
         image1 : {type: String, required: true},
@@ -27,6 +40,7 @@ export const ProductSchema = new mongoose.Schema({
 export interface Product extends mongoose.Document {
   
     id: string;
+    user: object;
     name: string;
     type: string;
     info: string;
@@ -34,8 +48,16 @@ export interface Product extends mongoose.Document {
     price: number;
     runingKilometers: number;
     date: string;
-    addressLocation:string;
-    currentLocation: string;   
+    addressLocation: {
+        address: string;
+        city: string;
+        country: string;
+        postalCode: string;
+      };
+      currentLocation: {
+        latitude: number;
+        longitude: number;
+      };  
     images: {  
         image0 : string;
         image1 : string;

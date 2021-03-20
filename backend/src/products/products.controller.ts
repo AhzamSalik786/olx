@@ -5,7 +5,7 @@ export class ProductsController {
     constructor(private readonly productService: ProductsService) {}
         @Post()
         async addOrder(
-            // @Body('user') orduser: object ,
+            @Body('user') prouser: object ,
             @Body('name') proname: string ,
             @Body('type') protype: string ,
             @Body('info') proinfo: string ,
@@ -13,12 +13,12 @@ export class ProductsController {
             @Body('price') proprice: number ,
             @Body('runingKilometers') proruningKilometers: number ,
             @Body('date') prodate: string ,
-            @Body('addressLocation') proaddressLocation: string ,
-            @Body('currentLocation') procurrentLocation: string ,
+            @Body('addressLocation') proaddressLocation: object ,
+            @Body('currentLocation') procurrentLocation: object ,
             @Body('images') proimages: object ,
         ){
             const generateId = await this.productService.insertProduct(
-                // orduser,
+                prouser,
                proname,
                protype,
                proinfo,
@@ -31,6 +31,11 @@ export class ProductsController {
                proimages,
             );
             return { id: generateId}
+        }
+        @Get()
+        async getProducts() {
+          const products = await this.productService.getProducts();
+          return products;
         }
 
        

@@ -5,25 +5,28 @@ import { Product } from './products.model';
 
 @Injectable()
 export class ProductsService {
-    private products: Product[] = [];
-    constructor(
-        @InjectModel('Product') private readonly productModel: Model<Product>,
-      ) {}
+  private products: Product[] = [];
+  constructor(
+    @InjectModel('Product') private readonly productModel: Model<Product>,
+  ) {}
 
-      async insertProduct(
-        name: string,
-        type: string,
-        info: string,
-        description: string,
-        price: number,
-        runingKilometers: number,
-        date: string,
-        addressLocation: string,
-        currentLocation: string,
-        images: object,
-        ) {
-        try {
-            const newProduct = new this.productModel({
+  async insertProduct(
+    user: object,
+    name: string,
+    type: string,
+    info: string,
+    description: string,
+    price: number,
+    runingKilometers: number,
+    date: string,
+    addressLocation: object,
+    currentLocation: object,
+    images: object,
+  ) {
+    console.log('user', user);
+    try {
+      const newProduct = new this.productModel({
+        user,
         name,
         type,
         info,
@@ -34,12 +37,33 @@ export class ProductsService {
         addressLocation,
         currentLocation,
         images,
-            });
-            const result = await newProduct.save();
-            return result.id as string
-        } catch (error) {
+      });
+
+      // this.productModel.populate(newProduct, { path: 'user' });
+
+      const result = await newProduct.save();
+      return result.id as string;
+    } catch (error) {
       console.error('this is error ->', error);
-            
-        }
-      }
+    }
+  }
+  async getProducts() {
+    const products = await this.productModel.find().populate('user');
+    // console.log(result);
+    return products;
+    // .map((product) => ({
+    //   id: product.id,
+    //   user: product.user,
+    //   name: product.name,
+    //   type: product.type,
+    //   info: product.info,
+    //   description: product.description,
+    //   price: product.price,
+    //   runingKilometers: product.runingKilometers,
+    //   date: product.date,
+    //   addressLocation: product.addressLocation,
+    //   currentLocation: product.currentLocation,
+    //   images: product.images,
+    // }));
+  }
 }
