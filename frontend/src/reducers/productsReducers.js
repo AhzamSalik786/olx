@@ -21,18 +21,18 @@ export const productListReducer = (state = { products: [] }, action) => {
   }
 };
 
-// export const bookDetailsReducer = (
-//   state = { book: { reviews: [] } },
-//   action
-// ) => {
-//   switch (action.type) {
-//     case PRODUCTS_DETAILS_REQUEST:
-//       return { loading: true, ...state };
-//     case  PRODUCTS_DETAILS_SUCCESS:
-//       return { loading: false, book: action.payload };
-//     case PRODUCTS_DETAILS_FAIL:
-//       return { loadind: false, error: action.payload };
-//     default:
-//       return state;
-//   }
-// };
+export const bookDetailsReducer = (
+  state = { book: { reviews: [] } },
+  action
+) => {
+  switch (action.type) {
+    case PRODUCTS_DETAILS_REQUEST:
+      return { loading: true, ...state };
+    case  PRODUCTS_DETAILS_SUCCESS:
+      return { loading: false, book: action.payload };
+    case PRODUCTS_DETAILS_FAIL:
+      return { loadind: false, error: action.payload };
+    default:
+      return state;
+  }
+};

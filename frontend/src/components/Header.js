@@ -64,7 +64,9 @@ const Header = () => {
                   </Nav.Link>
                 </LinkContainer>
               )}
-              <LinkContainer to='/bag'>
+              <LinkContainer to='/user/login?redirect=products'>
+    {/* history.push('/user/login?redirect=products') */}
+                
                 <Nav.Link>
                  {/* <b> +SELL </b>
         <img src="\images\sell2.jpg" variant='top' height='15px' width='40px'/> */}
@@ -73,7 +75,7 @@ const Header = () => {
                     backgroundColor: "blue",
                     borderRadius: "30px"
                   }}
-                  ><i class="fas fa-plus">SELL</i></Button>
+                  ><i className="fas fa-plus">SELL</i></Button>
                 </Nav.Link>
               </LinkContainer>
             </Nav>
