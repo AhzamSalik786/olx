@@ -50,9 +50,10 @@ const userInfoFromStorage = localStorage.getItem('userInfo')
 // const shippingAddressFromStorage = localStorage.getItem('shippingAddress')
 //   ? JSON.parse(localStorage.getItem('shippingAddress'))
 //   : {}
-  const shippingLocationFromStorage = localStorage.getItem('shippingLocation')
-  ? JSON.parse(localStorage.getItem('shippingLocation'))
+  const shippingLocationFromStorage = localStorage.getItem('currentLocation')
+  ? JSON.parse(localStorage.getItem('currentLocation'))
   : {}
+  console.log("shipping" , shippingLocationFromStorage)
 //   const paymentMethodFromStroage= localStorage.getItem('paymentMethod')
 //   ? JSON.parse(localStorage.getItem('paymentMethod'))
 //   : {}
@@ -66,9 +67,13 @@ const initialState = {
 //     paymentMethod: paymentMethodFromStroage,
 //   },
   userLogin: { userInfo: userInfoFromStorage,
-    currentLocation: shippingLocationFromStorage
+    // currentLocation: shippingLocationFromStorage
               //  userInfoGmail : userInfoFromGmailStorage
    },
+   sellProductList: {
+    currentLocation: shippingLocationFromStorage
+
+   }
   
 }
 const middleware = [thunk]

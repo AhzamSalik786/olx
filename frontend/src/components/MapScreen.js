@@ -14,7 +14,7 @@ class MapScreen extends Component {
       name: 'React',
     }
   }
-
+  
   // bag = useSelector((state) => state.bag)
   // { shippingLocation } = bag
   render() {
@@ -25,39 +25,36 @@ class MapScreen extends Component {
           zoom={14}
           style={mapStyles}
           initialCenter={{
-              lat : 24.8607,
-              lng : 67.0011,
-            // lat: this.props.shippingLocation.latitude? this.props.shippingLocation.latitude : 24.8607,
-            // lng: this.props.shippingLocation.longitude? this.props.shippingLocation.longitude : 67.0011,
+            lat: this.props.currentLocation.latitude? this.props.currentLocation.latitude : 24.8607,
+            lng: this.props.currentLocation.longitude? this.props.currentLocation.longitude : 67.0011,
+            
+            
           }}
           center={{
-            lat : 24.8607,
-            lng : 67.0011,
-            // lat: this.props.shippingLocation.latitude,
-            // lng: this.props.shippingLocation.longitude,
+            lat: this.props.currentLocation.latitude,
+            lng: this.props.currentLocation.longitude,
           }}
-        >
+          >
           <Marker
             onClick={this.onMarkerClick}
             name={'Xord'}
             position={{
-                
-            //   lat: this.props.shippingLocation.latitude,
-            //   lng: this.props.shippingLocation.longitude,
+              lat: this.props.currentLocation.latitude,
+              lng: this.props.currentLocation.longitude,
             }}
-          />
+            />
         </Map>
       </div>
     )
   }
 }
-
 let mapStateToProps = (state) => {
-//   console.log('state', state.bag.shippingLocation)
+  // console.log("aaabbb", this.props.currentLocation.latitude)
+  console.log('state', state.sellProductList.currentLocation)
   return {
-    // shippingLocation: state.bag.shippingLocation
-    //   ? state.bag.shippingLocation
-    //   : '',
+    currentLocation: state.sellProductList.currentLocation
+      ? state.sellProductList.currentLocation
+      : '',
   }
 }
 let mapDispatchToProps = (dispatch) => {

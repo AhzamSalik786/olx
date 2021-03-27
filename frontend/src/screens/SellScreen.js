@@ -4,12 +4,12 @@ import { Row, Col, Form, Button, ListGroup } from 'react-bootstrap'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
-import { sellListProduct, saveLocation } from '../actions/sellAction'
+import { sellListProduct, saveCurrentLocation } from '../actions/sellAction'
 import MapScreen from '../components/MapScreen'
 import axios from 'axios'
 // import { sellProductListReducer } from '../reducers/sellReducers'
 const SellScreen = ({ history }) => {
-  const [user, setUser] = useState('')
+  // const [user, setUser] = useState('')
   const [name, setName] = useState('')
   const [type, setType] = useState('')
   const [info, setInfo] = useState('')
@@ -18,26 +18,33 @@ const SellScreen = ({ history }) => {
   const [runingKilometers, setRuningKilometers] = useState('')
   const [date, setDate] = useState('')
   const [addressLocation, setAddressLocation] = useState('')
+  const [currentLocation, setCurrentLocation] = useState('')
   const [longitude, setLongitude] = useState('')
   const [latitude, setLatitude] = useState('')
   const [images, setImages] = useState('')
   const [message, setMessage] = useState('')
-
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.userLogin)
-  const { loading, userInfo, error } = userLogin
+  console.log('state', userLogin.userInfo.userData._id)
+  console.log('state', userLogin.currentLocation)
+  console.log('stateawsaassas', userLogin)
+  const { loading, userInfo, location, error } = userLogin
   const sellProductList = useSelector((state) => state.sellProductList)
+  const { image } = sellProductList
   console.log('abc', userInfo.userData._id)
   const addSubmitHandler = (e) => {
-    setUser(userInfo.userData._id)
+    // setUser(userInfo.userData._id)
     e.preventDefault()
-    const currentLocation = {
-      latitude,
-      longitude,
-    }
+    // const currentLocation = {
+    //   latitude,
+    //   longitude,
+    // }
+    console.log('ccccccccccccccc', currentLocation)
+    setCurrentLocation(userLogin.currentLocation)
+    // userLogin.userInfo.userData._id
     dispatch(
-      sellListProduct(
-        user,
+      sellListProduct({
+        user: userLogin.userInfo.userData._id,
         name,
         type,
         info,
@@ -47,9 +54,10 @@ const SellScreen = ({ history }) => {
         date,
         addressLocation,
         currentLocation,
-        images
-      )
+        images,
+      })
     )
+    history.push('/')
     // history.push('/user/login?redirect=products')
   }
   // var a = <i class="fas fa-car"></i>
@@ -71,40 +79,39 @@ const SellScreen = ({ history }) => {
   //   },
 
   // ]
-  // const submitHandlerWithMap= async (e) => {
-  //   e.preventDefault()
-  //   console.log('submit')
-  //   await navigator.geolocation.getCurrentPosition(
-  //     function (position) {
-  //       console.log('pos', position)
-  //       // var position = position
-  //       var latitude = position.coords.latitude
-  //       var longitude = position.coords.longitude
-  //       setLatitude(position.coords.latitude)
-  //       setLongitude(position.coords.longitude)
-  //       console.log('Latitude is :', position.coords.latitude)
-  //       console.log('Longitude is :', position.coords.longitude)
-  //       console.log(position)
-  //       dispatch(saveLocation({ latitude, longitude }))
+  const submitHandlerWithMap = async (e) => {
+    e.preventDefault()
+    console.log('submit')
+    await navigator.geolocation.getCurrentPosition(
+      function (position) {
+        console.log('pos', position)
+        // var position = position
+        var latitude = position.coords.latitude
+        var longitude = position.coords.longitude
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
+        console.log('Latitude is :', position.coords.latitude)
+        console.log('Longitude is :', position.coords.longitude)
+        console.log(position)
+        dispatch(saveCurrentLocation({ latitude, longitude }))
+      }
 
-  //     },
+      // setTimeout(()=>(history.push('/user/payment')), 3000)
+      // myFunction(){
+      //   setTimeout(function(){ alert("Hello"); }, 3000);
+      // }
 
-  //     // setTimeout(()=>(history.push('/user/payment')), 3000)
-  //     // myFunction(){
-  //       //   setTimeout(function(){ alert("Hello"); }, 3000);
-  //       // }
-
-  //       // function (error) {
-  //         //   console.error('Error Code = ' + error.code + ' - ' + error.message)
-  //         // }
-  //         )
-  //         // setTimeout(() => {
-  //         //   history.push('/user/payment')
-  //         // }, 3000)
-  //         // e.preventDefault()
-  //   // console.log( "fffffffff",abc)
-  //   // history.push('/payment')
-  // }
+      // function (error) {
+      //   console.error('Error Code = ' + error.code + ' - ' + error.message)
+      // }
+    )
+    // setTimeout(() => {
+    //   history.push('/user/payment')
+    // }, 3000)
+    // e.preventDefault()
+    // console.log( "fffffffff",abc)
+    // history.push('/payment')
+  }
   const [image0, setImage0] = useState('')
   const [image1, setImage1] = useState('')
   const [image2, setImage2] = useState('')
@@ -117,13 +124,28 @@ const SellScreen = ({ history }) => {
   const [imageSelected3, setImageSelected3] = useState('')
   const [imageSelected4, setImageSelected4] = useState('')
   const [imageSelected5, setImageSelected5] = useState('')
-
+  const img0 = image0
+  const img1 = image1
+  const img2 = image2
+  const img3 = image3
+  const img4 = image4
+  const img5 = image5
+  var imgObj = {
+    img0,
+    img1,
+    img2,
+    img3,
+    img4,
+    img5,
+  }
+  console.log('all images', imgObj)
   console.log('image0', image0)
   console.log('image1', image1)
   console.log('image2', image2)
   console.log('image3', image3)
   console.log('image4', image4)
   console.log('image5', image5)
+
   const uploadImage0 = async () => {
     try {
       const formData = new FormData()
@@ -272,11 +294,13 @@ const SellScreen = ({ history }) => {
       console.log(imageSelected5)
       // console.log(imageSelected1)
       //  uploadImage4()
+      setImages(imgObj)
     } catch (error) {
       console.log('error=====', error)
     }
   }
 
+  console.log('imagesssssssssssss', images)
   return (
     <Row>
       <Col xs={12} md={8}>
@@ -286,6 +310,7 @@ const SellScreen = ({ history }) => {
 
           {error && <Message variant='danger'> {error}</Message>}
           {loading && <Loader />}
+
           <Form onSubmit={addSubmitHandler}>
             <Form.Group controlId='images'>
               {/* <Form.Label>Images</Form.Label> */}
@@ -356,6 +381,14 @@ const SellScreen = ({ history }) => {
             onChange={(e) => setType(e.target.value)}
           ></Form.Control>
         </Form.Group> */}
+            <Form onClick={submitHandlerWithMap}>
+              <Form.Group controlId='location'>
+                <Form.Label>Location</Form.Label>
+              </Form.Group>
+              <Button type='submit' variant='primary'>
+                <i class='fas fa-map-marker-alt fa-lg'> Know Your Location</i>
+              </Button>
+            </Form>
             <Form.Group>
               {/* <ListGroup.Item> */}
               <Row>
@@ -379,6 +412,7 @@ const SellScreen = ({ history }) => {
               </Row>
               {/* </ListGroup.Item> */}
             </Form.Group>
+
             <Form.Group controlId='info'>
               <Form.Label>Info</Form.Label>
               <Form.Control
@@ -477,16 +511,7 @@ const SellScreen = ({ history }) => {
               ></Form.Control>
             </Form.Group>
 
-            {/* <Form onSubmit={submitHandlerWithMap}>
-          <Form.Group controlId='location'>
-            <Form.Label>Location</Form.Label>
-            
-          </Form.Group>
-          <Button type='submit' variant='primary'>
-            <i class='fas fa-map-marker-alt fa-lg'> Know Your Location</i>
-          </Button>
-        </Form> */}
-            <Button type='submit' variant>
+            <Button type='submit' variant='primary'>
               POST NOW
             </Button>
           </Form>
