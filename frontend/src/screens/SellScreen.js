@@ -30,6 +30,7 @@ const SellScreen = ({ history }) => {
   console.log('stateawsaassas', userLogin)
   const { loading, userInfo, location, error } = userLogin
   const sellProductList = useSelector((state) => state.sellProductList)
+  console.log('state', sellProductList.currentLocation)
   const { image } = sellProductList
   console.log('abc', userInfo.userData._id)
   const addSubmitHandler = (e) => {
@@ -38,9 +39,9 @@ const SellScreen = ({ history }) => {
     // const currentLocation = {
     //   latitude,
     //   longitude,
-    // }
+    // // }
     console.log('ccccccccccccccc', currentLocation)
-    setCurrentLocation(userLogin.currentLocation)
+    // setCurrentLocation(sellProductList.currentLocation)
     // userLogin.userInfo.userData._id
     dispatch(
       sellListProduct({
@@ -52,9 +53,9 @@ const SellScreen = ({ history }) => {
         price,
         runingKilometers,
         date,
-        addressLocation,
-        currentLocation,
-        images,
+        addressLocation: {addressLocation},
+        currentLocation : sellProductList.currentLocation,
+        images  : { image0, image1, image2, image3, image4, image5},
       })
     )
     history.push('/')
@@ -294,7 +295,7 @@ const SellScreen = ({ history }) => {
       console.log(imageSelected5)
       // console.log(imageSelected1)
       //  uploadImage4()
-      setImages(imgObj)
+      // setImages(imgObj)
     } catch (error) {
       console.log('error=====', error)
     }
