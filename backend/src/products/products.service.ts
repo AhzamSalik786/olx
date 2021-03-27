@@ -68,22 +68,20 @@ export class ProductsService {
   }
   async getSingleProduct(productId: string) {
     const product = await this.findProduct(productId);
-    return  product
-           
-
-}
-
-private async findProduct(id: string): Promise<any> {
-  let product;
-  try {
-    product = await this.productModel.findById(id);
-  } catch (error) {
-    if (!product) {
-      throw new NotFoundException('Could Not Find Product.');
-    }
+    return product;
   }
-  // const productIndex = this.products.findIndex((prod) => prod.id == id);
-  // const product = this.products[productIndex];
-  return product;
-}
+
+  private async findProduct(id: string): Promise<any> {
+    let product;
+    try {
+      product = await this.productModel.findById(id).populate('user');
+    } catch (error) {
+      if (!product) {
+        throw new NotFoundException('Could Not Find Product.');
+      }
+    }
+    // const productIndex = this.products.findIndex((prod) => prod.id == id);
+    // const product = this.products[productIndex];
+    return product;
+  }
 }

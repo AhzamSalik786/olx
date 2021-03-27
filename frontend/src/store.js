@@ -2,8 +2,8 @@ import { createStore, combineReducers, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import { composeWithDevTools } from 'redux-devtools-extension'
 import {
-    productListReducer
-//   bookDetailsReducer,
+    productListReducer,
+  productDetailsReducer,
 } from './reducers/productsReducers'
 import { sellProductListReducer } from './reducers/sellReducers'
 // import { bagReducer } from './reducers/bagReducers'
@@ -24,6 +24,7 @@ import {
 const reducer = combineReducers({
   sellProductList : sellProductListReducer,
   productList: productListReducer,
+  productDetails: productDetailsReducer,
 //   bookList: bookListReducer,
 //   bookDetails: bookDetailsReducer,
 //   bag: bagReducer,
@@ -73,7 +74,10 @@ const initialState = {
    sellProductList: {
     currentLocation: shippingLocationFromStorage
 
-   }
+   },
+  productDetails : {
+    Product: productDetailsReducer
+  }
   
 }
 const middleware = [thunk]
