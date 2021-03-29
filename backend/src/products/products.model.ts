@@ -16,10 +16,7 @@ export const ProductSchema = new mongoose.Schema({
     runingKilometers: { type: Number, required: true },
     date: { type: String, required: true },
     addressLocation: {
-        address: { type: String },
-        city: { type: String },
-        country: { type: String },
-        postalCode: { type: String },
+      type: Object, required: true
       },
       currentLocation: {
         latitude: { type: Number, required: true },
@@ -48,12 +45,7 @@ export interface Product extends mongoose.Document {
     price: number;
     runingKilometers: number;
     date: string;
-    addressLocation: {
-        address: string;
-        city: string;
-        country: string;
-        postalCode: string;
-      };
+    addressLocation: object;
       currentLocation: {
         latitude: number;
         longitude: number;

@@ -1,4 +1,4 @@
-import { Controller ,Post, Body, Get, Param} from '@nestjs/common';
+import { Controller ,Post, Body, Get, Param, Query ,Req} from '@nestjs/common';
 import { ProductsService} from './products.service';
 @Controller('products')
 export class ProductsController {
@@ -33,10 +33,27 @@ export class ProductsController {
             return { id: generateId}
         }
         @Get()
-        async getProducts() {
-          const products = await this.productService.getProducts();
+        async getProducts(@Query() param) {
+          const products = await this.productService.getProducts(param);
           return products;
         }
+
+//         @Get('p2p')
+//   async getTotalPeerToPeerTransactions(
+//     @Req() request: Request,
+//     @Query() param
+//   ) {
+//     return this.metricesService.getPeerToPeerTransaction(request.body, param);
+//   }
+// 3:42
+// if (
+//         param.order &&
+//         param.order.toLowerCase() === 'asc' &&
+//         !param.start &&
+//         !param.end
+//       )
+        
+ 
         @Get(':id')
   getProduct(@Param('id') prodId: string) {
     return this.productService.getSingleProduct(prodId);
@@ -44,3 +61,5 @@ export class ProductsController {
 
        
 }
+
+

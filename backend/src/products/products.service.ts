@@ -47,10 +47,35 @@ export class ProductsService {
       console.error('this is error ->', error);
     }
   }
-  async getProducts() {
-    const products = await this.productModel.find().populate('user');
-    // console.log(result);
-    return products;
+  async getProducts(param) {
+    const keyword = param.keyword
+    //  ? {
+    //  type: {
+    //   $regex: param,
+    //   $options: 'i',
+    //  },
+    // } :{}
+    // console.log(keyword);
+    // console.log(keyword);
+   
+    if (param.keyword) {
+      console.log("if",param)
+      const  products = await this.productModel.find({type: keyword}).collation(
+        { locale: 'en', strength: 2 }
+      ).populate('user')
+      return products;
+    }else {
+      // console.log("else",param)
+
+      const products = await this.productModel
+        .find({ })
+        .populate('user');
+      // console.log(result);
+      return products;
+    }
+
+
+
     // .map((product) => ({
     //   id: product.id,
     //   user: product.user,

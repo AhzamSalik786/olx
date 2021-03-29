@@ -1,9 +1,12 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
+import { Route } from 'react-router-dom';
+import SearchField from "react-search-field";
 import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown ,Button} from 'react-bootstrap'
 import { logout } from '../actions/userAction'
+import SearchBox from './SearchBox'
+
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -15,6 +18,7 @@ const Header = () => {
   const logoutHandler = () => {
     dispatch(logout())
   }
+  
   return (
     <header>
        {/* bg='primary' */}
@@ -29,6 +33,7 @@ const Header = () => {
           <LinkContainer to='/'>
             <Navbar.Brand> OLX</Navbar.Brand>
           </LinkContainer>
+
 {/* 
           <LinkContainer to='/'>
             <Navbar.Brand>
@@ -38,6 +43,7 @@ const Header = () => {
           </LinkContainer> */}
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
+            <Route render={({history})=> <SearchBox history={history}/> } />
             <Nav className='ml-auto' 
             style={
               {
