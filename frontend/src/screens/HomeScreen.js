@@ -5,6 +5,7 @@ import Product from '../components/Product'
 import Message from '../components/Message'
 import Loader from '../components/Loader'
 import { ListProducts } from '../actions/productsAction'
+// import Footer from '../components/Footer'
 const HomeScreen = ({match}) => {
   const keyword = match.params.keyword
   const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const HomeScreen = ({match}) => {
       ) : error ? (
         <Message variant='danger'>{error}</Message>
       ) : (
+        <div >
         <Row>
           {products.map((product) => (
             <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
@@ -32,6 +34,9 @@ const HomeScreen = ({match}) => {
             </Col>
           ))}
         </Row>
+          {/* <Footer/> */}
+          </div>
+
       )}
     </>
   )

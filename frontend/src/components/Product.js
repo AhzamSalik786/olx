@@ -1,10 +1,14 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { Card } from 'react-bootstrap'
+import Footer from './Footer'
 import Rating from './Rating'
 const Product = ({ product }) => {
     console.log("product daaaaaaata", product)
   return (
+    <div>
+
+    
     <Card className='my-3 p-3 rounded'>
       <Link to={`/products/${product._id}`}>
         <Card.Img src={product.images.image0} variant='top' height='200' width ="auto"/>
@@ -28,8 +32,10 @@ const Product = ({ product }) => {
         {/* <Card.Text as='div'>
           <Rating value={product.rating} text={`${product.numReviews} reviews`} />
         </Card.Text> */}
+    
       </Card.Body>
     </Card>
+    </div>
   )
 }
 

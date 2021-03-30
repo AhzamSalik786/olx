@@ -2,16 +2,7 @@ import React, { useState } from 'react'
 import { Form, Button, Navbar, Nav, FormControl ,InputGroup, DropdownButton, Dropdown} from 'react-bootstrap'
 import '../App.css';
 const NavigationBar = ({history}) => {
-//   const [keyword, setKeyword] = useState(' ')
 
-  // const submitHandler = (e) => {
-  //     e.preventDefault()
-  //   //   if(keyword.trim()) {
-  //   //     history.push(`/search/${keyword}`)
-  //   //   } else {
-  //   //       history.push('/')
-  //   //   }
-  // }
   return (
     <>
     <InputGroup className="mb-3">
@@ -76,7 +67,6 @@ const NavigationBar = ({history}) => {
 </DropdownButton>
         
       </DropdownButton>
-      {/* <FormControl aria-describedby="basic-addon1" /> */}
       <Nav.Link href="http://localhost:3000/search/mobile">Mobile Phones</Nav.Link>
       <Nav.Link href="http://localhost:3000/search/car">Cars</Nav.Link>
       <Nav.Link href="http://localhost:3000/search/motorCycles">MotorCycles</Nav.Link>

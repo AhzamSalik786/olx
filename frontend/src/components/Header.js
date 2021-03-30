@@ -7,6 +7,7 @@ import { Navbar, Nav, Container, NavDropdown ,Button} from 'react-bootstrap'
 import { logout } from '../actions/userAction'
 import SearchBox from './SearchBox'
 import NavigationBar from './NavigationBar';
+import '../App';
 
 
 const Header = () => {
@@ -22,7 +23,7 @@ const Header = () => {
   
   return (
     <div>
-    <header>
+    <header className ="header">
        {/* bg='primary' */}
       <Navbar bg='primary' variant='light' expand='lg' collapseOnSelect 
       style={{

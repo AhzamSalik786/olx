@@ -41,3 +41,25 @@
   display: block;
   padding: 1rem 1rem;
 }
+.white{
+  color: white;
+}
+.footer {
+  /* position: fixed; */
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  /* background-color: red; */
+  /* color: white; */
+  text-align: center;
+}
+
+/* .header{
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background-color: red;
+   color: white;
+  text-align: center;
+} */

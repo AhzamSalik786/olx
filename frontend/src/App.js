@@ -9,12 +9,13 @@ import RegisterScreen from './screens/RegisterScreen'
 import SellScreen from './screens/SellScreen'
 import ProductScreen from './screens/ProductScreen'
 // import SearchBox from './components/SearchBox'
+// import NavigationBar from "./components/NavigationBar"
 
 const App = () => {
   return (
     <Router>
       <Header />
-
+{/* <NavigationBar/> */}
       <main className='py-3'>
         <Container>
           <Route path='/' component={HomeScreen} exact />
