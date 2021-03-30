@@ -62,7 +62,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
                         backgroundImage: `url(${Product?.images?.image0})`,
                       }}
@@ -73,7 +73,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
 
                         backgroundImage: `url(${Product?.images?.image1})`,
@@ -85,7 +85,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
 
                         backgroundImage: `url(${Product?.images?.image2})`,
@@ -97,7 +97,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
 
                         backgroundImage: `url(${Product?.images?.image3})`,
@@ -109,7 +109,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
 
                         backgroundImage: `url(${Product?.images?.image4})`,
@@ -121,7 +121,7 @@ const ProductScreen = ({ history, match }) => {
                   <div className='each-slide'>
                     <div
                       style={{
-                        height: '300px',
+                        height: 'auto',
                         background: 'no-repeat',
 
                         backgroundImage: `url(${Product?.images?.image5})`,

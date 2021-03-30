@@ -6,6 +6,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { Navbar, Nav, Container, NavDropdown ,Button} from 'react-bootstrap'
 import { logout } from '../actions/userAction'
 import SearchBox from './SearchBox'
+import NavigationBar from './NavigationBar';
 
 
 const Header = () => {
@@ -20,6 +21,7 @@ const Header = () => {
   }
   
   return (
+    <div>
     <header>
        {/* bg='primary' */}
       <Navbar bg='primary' variant='light' expand='lg' collapseOnSelect 
@@ -89,6 +91,11 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
+  
+      <NavigationBar />
+    
+
+    </div>
   )
 }
 
